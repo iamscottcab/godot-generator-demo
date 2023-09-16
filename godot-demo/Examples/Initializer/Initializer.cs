@@ -8,7 +8,7 @@ public class Initializer : ICustomInitializable
 {
     private bool _initialized;
     private readonly SemaphoreSlim _semaphore = new(1);
-    private readonly IEnumerable<Task> _initializables;
+    private readonly IEnumerable<Task> _dependencies;
     private readonly Task _onInitialize;
 
     public Initializer(Task onInitialze, params ICustomInitializable[] dependencies) 
@@ -16,7 +16,7 @@ public class Initializer : ICustomInitializable
         _onInitialize = onInitialze;
 
         dependencies ??= Array.Empty<ICustomInitializable>();
-        _initializables = dependencies.Select(x => x.Initialize());
+        _dependencies = dependencies.Select(x => x.Initialize());
     }
 
     public async Task Initialize()
@@ -42,6 +42,6 @@ public class Initializer : ICustomInitializable
     }
 
     private Task InitializeDependencies() {
-        return Task.WhenAll(_initializables);
+        return Task.WhenAll(_dependencies);
     }
 }
