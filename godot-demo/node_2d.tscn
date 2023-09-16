@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=3 uid="uid://budfj13fvifv1"]
+
+[ext_resource type="Script" path="res://NodeListener.cs" id="1_m21ny"]
+[ext_resource type="Script" path="res://Initializables/A.cs" id="2_0hsvo"]
+[ext_resource type="Script" path="res://Initializables/B.cs" id="3_dkcja"]
+[ext_resource type="Script" path="res://Initializables/C.cs" id="4_5auuj"]
+[ext_resource type="Script" path="res://Initializables/X.cs" id="5_ueogr"]
+[ext_resource type="Script" path="res://Initializables/Z.cs" id="6_l8y66"]
+
+[node name="SceneRoot" type="Node2D"]
+
+[node name="Manager" type="Node2D" parent="."]
+script = ExtResource("1_m21ny")
+
+[node name="A" type="Node2D" parent="."]
+script = ExtResource("2_0hsvo")
+
+[node name="B" type="Node2D" parent="." node_paths=PackedStringArray("a")]
+script = ExtResource("3_dkcja")
+a = NodePath("../A")
+
+[node name="C" type="Node2D" parent="."]
+script = ExtResource("4_5auuj")
+
+[node name="X" type="Node2D" parent="." node_paths=PackedStringArray("a")]
+script = ExtResource("5_ueogr")
+a = NodePath("../A")
+
+[node name="Z" type="Node2D" parent="." node_paths=PackedStringArray("c")]
+script = ExtResource("6_l8y66")
+c = NodePath("../C")
+
+[connection signal="child_entered_tree" from="." to="Manager" method="OnNodeAdded"]

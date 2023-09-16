@@ -1,0 +1,15 @@
+<Project Sdk="Godot.NET.Sdk/4.1.1">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+    <RootNamespace>SourceGeneratorDemo</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Scott.Cab.Initialization.dll" />
+    <!-- <Analyzer Include="Scott.Cab.Generation.Common.dll" />
+    <Analyzer Include="Scott.Cab.Initialization.Generation.dll" /> -->
+  </ItemGroup>
+  <!-- <PropertyGroup>
+    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+  </PropertyGroup> -->
+</Project>
