@@ -5,7 +5,8 @@ public partial class DepsFromResolver : InitializableNode
     private DerivedClass _derivedClass;
 
     // Perhaps Inject gets called first to make sure everything has dependencies.
-    public void Inject(ServiceResolver resolver) {
+    public void Inject(ServiceResolver resolver)
+    {
         _derivedClass = resolver.Resolve<DerivedClass>();
     }
 

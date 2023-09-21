@@ -13,6 +13,7 @@ public class Initializer : ICustomInitializable
 
     public Initializer(Task onInitialze, params ICustomInitializable[] dependencies) 
     {
+        onInitialze ??= Task.CompletedTask;
         _onInitialize = onInitialze;
 
         dependencies ??= Array.Empty<ICustomInitializable>();
@@ -31,7 +32,7 @@ public class Initializer : ICustomInitializable
 
         try
         {
-            await InitializeDependencies();
+            await Task.WhenAll(_dependencies);
             await _onInitialize;
             _initialized = true;
         }
@@ -39,9 +40,5 @@ public class Initializer : ICustomInitializable
         {
             _semaphore.Release();
         }
-    }
-
-    private Task InitializeDependencies() {
-        return Task.WhenAll(_dependencies);
     }
 }

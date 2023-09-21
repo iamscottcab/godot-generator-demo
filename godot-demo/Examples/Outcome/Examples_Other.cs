@@ -30,7 +30,8 @@ public partial class Example : ICustomInitializable
         }
     }
 
-    protected virtual Task InitializeDependencies() {
+    protected virtual Task InitializeDependencies()
+    {
         // I dunno I guess this is source generated?!
         return Task.WhenAll(new[] {
             _dep.Initialize(),
