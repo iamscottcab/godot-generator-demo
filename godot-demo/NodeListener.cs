@@ -22,7 +22,6 @@ public partial class NodeListener : Node
 
 	private async Task InitializeAll()
 	{
-		
 		var initializables = _nodes.Where(x => x is IInitializable).Select(x => ((IInitializable)x).Initialize());
 
 		if (initializables.Count() > 0)
