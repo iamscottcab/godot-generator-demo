@@ -3,22 +3,21 @@
 using System.Threading.Tasks;
 using Godot;
 
-public partial class NodeWithComposition : Node
+public partial class NodeWithComposition : Node, ICustomInitializable
 {
-    private Initializer _init;
+    private ICustomInitializable _init;
     private BasicInitializableClass _basicClass1;
     private BasicInitializableClass _basicClass2;
 
     // Special Godot lifetime hook
-    public override async void _Ready()
+    public override void _Ready()
 	{
         _init = new Initializer(Initialize(), _basicClass1, _basicClass2);  
-        await _init.Initialize();   
 	}
 
-    private Task Initialize()
+    public async Task Initialize()
     {
         // Using the dependencies down here..
-        return Task.CompletedTask;
+        await _init.Initialize();
     }
 }
