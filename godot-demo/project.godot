@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Source Generator Demo"
-run/main_scene="res://node_2d.tscn"
+run/main_scene="res://demo.tscn"
 config/features=PackedStringArray("4.1", "C#", "Mobile")
 config/icon="res://icon.svg"
 
@@ -27,3 +27,4 @@ import/fbx/enabled=false
 [rendering]
 
 renderer/rendering_method="mobile"
+environment/defaults/default_clear_color=Color(0.129412, 0.129412, 0.129412, 1)

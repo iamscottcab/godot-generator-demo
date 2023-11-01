@@ -24,11 +24,12 @@ public partial class NodeListener : Node
 	{
 		var initializables = _nodes.Where(x => x is IInitializable).Select(x => ((IInitializable)x).Initialize());
 
-		if (initializables.Count() > 0)
+		if (initializables.Count() == 0)
 		{
-			GD.Print($"Initializing all the nodes.");
+			return;
 		}
 
+		GD.Print($"Initializing all the nodes.");
 		await Task.WhenAll(initializables);
 	}
 }

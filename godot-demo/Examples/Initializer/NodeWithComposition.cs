@@ -12,12 +12,17 @@ public partial class NodeWithComposition : Node, ICustomInitializable
     // Special Godot lifetime hook
     public override void _Ready()
 	{
-        _init = new Initializer(Initialize(), _basicClass1, _basicClass2);  
+        _init = new Initializer(InitializeAsync(), _basicClass1, _basicClass2);  
 	}
 
     public async Task Initialize()
     {
-        // Using the dependencies down here..
         await _init.Initialize();
+    }
+
+    private Task InitializeAsync()
+    {
+        // Your actual internal logic, yuck.
+        return Task.CompletedTask;
     }
 }
