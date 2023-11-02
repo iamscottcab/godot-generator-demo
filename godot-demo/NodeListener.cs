@@ -1,30 +1,46 @@
 using Godot;
 using Scott.Cab.Initialization;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 public partial class NodeListener : Node
 {
-	private readonly List<Node> _nodes = new();
+	private List<Node> _nodes = new();
+	private bool _initializing;
 
-	public override async void _Ready() => await InitializeAll();
-
-	public void OnNodeAdded(Node node)
+    public void OnNodeAdded(Node node)
 	{
-		Log.Append($"Node added {node.Name}.");
 		_nodes.Add(node);
 	}
 
+    public override void _Ready()
+    {
+		var rand = new Random();
+		_nodes = _nodes.OrderBy(x => rand.Next()).ToList();
+
+		foreach (var node in _nodes)
+			Log.Append($"Added node {node.Name}.");
+    }
+
+    public override async void _Input(InputEvent inputEvent)
+    {
+		if (inputEvent is not InputEventKey keyEvent || keyEvent.Keycode != Key.Space) return;
+		if (!keyEvent.IsPressed() || keyEvent.IsEcho()) return;	
+		if (_initializing) return;
+
+		_initializing = true;
+		await InitializeAll();
+    }
+
 	private async Task InitializeAll()
 	{
-		var initializables = _nodes.Where(x => x is IInitializable).Select(x => ((IInitializable)x).Initialize());
+		var initializeTasks = _nodes.Where(x => x is IInitializable).Select(x => ((IInitializable)x).Initialize());
 
-		if (initializables.Any())
-		{
+		if (initializeTasks.Any())
 			Log.Append($"{System.Environment.NewLine}Initializing all the nodes.{System.Environment.NewLine}");
-		}
 
-		await Task.WhenAll(initializables);
+		await Task.WhenAll(initializeTasks);
 	}
 }

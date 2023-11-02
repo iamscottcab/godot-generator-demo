@@ -35,8 +35,8 @@ font_color = Color(0, 0, 0, 1)
 [node name="Log" type="Label" parent="."]
 offset_left = 10.0
 offset_top = 10.0
-offset_right = 247.0
-offset_bottom = 407.0
+offset_right = 258.0
+offset_bottom = 428.0
 theme = SubResource("Theme_663rx")
 theme_override_styles/normal = SubResource("StyleBoxFlat_fmyd2")
 label_settings = SubResource("LabelSettings_xdsae")
@@ -49,7 +49,7 @@ label = NodePath("..")
 transform = Transform3D(0.877583, -0.229849, 0.420735, 0, 0.877583, 0.479426, -0.479426, -0.420736, 0.770151, 1.68294, 1.9177, 3.0806)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.943558, 0.331206, 0, -0.331206, 0.943558, -0.571224, 1.10691, 3.27097)
+transform = Transform3D(1, 0, 0, 0, 0.943558, 0.331206, 0, -0.331206, 0.943558, -0.571224, 1.24506, 3.22248)
 
 [node name="Nodes" type="Node3D" parent="."]
 script = ExtResource("1_xr7cp")
@@ -60,11 +60,12 @@ script = ExtResource("2_jvntm")
 tintColor = Color(1, 0.321569, 0.592157, 1)
 
 [node name="Box" type="MeshInstance3D" parent="Nodes/A"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 mesh = SubResource("BoxMesh_4q34c")
 skeleton = NodePath("../..")
 
 [node name="Label" type="Label3D" parent="Nodes/A"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.530535)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 pixel_size = 0.01
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(1, 1, 1, 1)
@@ -78,11 +79,12 @@ a = NodePath("../A")
 tintColor = Color(0.270588, 0.67451, 0.756863, 1)
 
 [node name="Box" type="MeshInstance3D" parent="Nodes/B"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 mesh = SubResource("BoxMesh_4q34c")
 skeleton = NodePath("../..")
 
 [node name="Label" type="Label3D" parent="Nodes/B"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.530535)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 pixel_size = 0.01
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(1, 1, 1, 1)
@@ -96,11 +98,12 @@ a = NodePath("../A")
 tintColor = Color(0.384314, 0.701961, 0.364706, 1)
 
 [node name="Box" type="MeshInstance3D" parent="Nodes/C"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 mesh = SubResource("BoxMesh_4q34c")
 skeleton = NodePath("../..")
 
 [node name="Label" type="Label3D" parent="Nodes/C"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.530535)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 pixel_size = 0.01
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(1, 1, 1, 1)
@@ -113,11 +116,12 @@ script = ExtResource("5_d34qb")
 tintColor = Color(0.741818, 0.69478, 0.131017, 1)
 
 [node name="Box" type="MeshInstance3D" parent="Nodes/X"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 mesh = SubResource("BoxMesh_4q34c")
 skeleton = NodePath("../..")
 
 [node name="Label" type="Label3D" parent="Nodes/X"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.530535)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0.5)
 pixel_size = 0.01
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(1, 1, 1, 1)
@@ -131,11 +135,12 @@ x = NodePath("../X")
 tintColor = Color(0.862745, 0.478431, 0.4, 1)
 
 [node name="Box" type="MeshInstance3D" parent="Nodes/Z"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 mesh = SubResource("BoxMesh_4q34c")
 skeleton = NodePath("../..")
 
 [node name="Label" type="Label3D" parent="Nodes/Z"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.530535)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0.5)
 pixel_size = 0.01
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(1, 1, 1, 1)
