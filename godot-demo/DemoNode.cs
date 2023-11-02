@@ -2,12 +2,14 @@ using Godot;
 
 public abstract partial class DemoNode : Node
 {
-	[Export] protected Color tintColor;
+	private readonly Color initializingColor = new(1, 0, 0);
+	private readonly int SecondInMilliSecond = 1000;
+	[Export] private Color tintColor;
 
-	protected abstract int InitialWaitTimeInMilliSecs { get; }
-	protected int WaitTime => InitialWaitTimeInMilliSecs + ((int)(GD.Randf() * 1000));
+	protected virtual int InitialWaitTimeInMilliSecs => 0;
+	protected int WaitTime => InitialWaitTimeInMilliSecs + SecondInMilliSecond + ((int)(GD.Randf() * 1000));
 
-	private StandardMaterial3D _material; 
+	private StandardMaterial3D _material;
 
 	public override void _Ready()
 	{
@@ -20,8 +22,11 @@ public abstract partial class DemoNode : Node
 		mesh.MaterialOverride = _material;
 	}
 
-	protected void TintMesh()
+	protected void SetInitializing() => _material.AlbedoColor = initializingColor;
+
+	protected void SetInitialized()
 	{
 		_material.AlbedoColor = tintColor;
+		Log.Append($"Initialized {Name}.");
 	}
 }

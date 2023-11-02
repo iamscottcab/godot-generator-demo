@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://c1j1islj8as1x"]
+[gd_scene load_steps=12 format=3 uid="uid://c1j1islj8as1x"]
 
+[ext_resource type="Script" path="res://Log.cs" id="1_kujve"]
 [ext_resource type="Script" path="res://NodeListener.cs" id="1_xr7cp"]
 [ext_resource type="Script" path="res://Initializables/A.cs" id="2_jvntm"]
 [ext_resource type="Script" path="res://Initializables/B.cs" id="3_6lfvg"]
@@ -7,21 +8,54 @@
 [ext_resource type="Script" path="res://Initializables/X.cs" id="5_d34qb"]
 [ext_resource type="Script" path="res://Initializables/Z.cs" id="6_u3fhg"]
 
+[sub_resource type="Theme" id="Theme_663rx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fmyd2"]
+bg_color = Color(1, 1, 1, 0.894118)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.329412, 0.329412, 0.329412, 1)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+anti_aliasing_size = 5.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_xdsae"]
+font_size = 20
+font_color = Color(0, 0, 0, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_4q34c"]
 
 [node name="demo" type="Node3D"]
+
+[node name="Log" type="Label" parent="."]
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 247.0
+offset_bottom = 407.0
+theme = SubResource("Theme_663rx")
+theme_override_styles/normal = SubResource("StyleBoxFlat_fmyd2")
+label_settings = SubResource("LabelSettings_xdsae")
+
+[node name="Logger" type="Node" parent="Log" node_paths=PackedStringArray("label")]
+script = ExtResource("1_kujve")
+label = NodePath("..")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.877583, -0.229849, 0.420735, 0, 0.877583, 0.479426, -0.479426, -0.420736, 0.770151, 1.68294, 1.9177, 3.0806)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.943558, 0.331206, 0, -0.331206, 0.943558, 0, 0.798887, 3.27097)
+transform = Transform3D(1, 0, 0, 0, 0.943558, 0.331206, 0, -0.331206, 0.943558, -0.571224, 1.10691, 3.27097)
 
 [node name="Nodes" type="Node3D" parent="."]
 script = ExtResource("1_xr7cp")
 
 [node name="A" type="Node3D" parent="Nodes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.75, 0)
 script = ExtResource("2_jvntm")
 tintColor = Color(1, 0.321569, 0.592157, 1)
 
@@ -38,7 +72,7 @@ font_size = 100
 outline_size = 8
 
 [node name="B" type="Node3D" parent="Nodes" node_paths=PackedStringArray("a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 script = ExtResource("3_6lfvg")
 a = NodePath("../A")
 tintColor = Color(0.270588, 0.67451, 0.756863, 1)
@@ -55,8 +89,10 @@ outline_modulate = Color(1, 1, 1, 1)
 font_size = 100
 outline_size = 8
 
-[node name="C" type="Node3D" parent="Nodes"]
+[node name="C" type="Node3D" parent="Nodes" node_paths=PackedStringArray("a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.75, 0)
 script = ExtResource("4_7nwan")
+a = NodePath("../A")
 tintColor = Color(0.384314, 0.701961, 0.364706, 1)
 
 [node name="Box" type="MeshInstance3D" parent="Nodes/C"]
@@ -71,10 +107,9 @@ outline_modulate = Color(1, 1, 1, 1)
 font_size = 100
 outline_size = 8
 
-[node name="X" type="Node3D" parent="Nodes" node_paths=PackedStringArray("a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0)
+[node name="X" type="Node3D" parent="Nodes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, -0.75, 0)
 script = ExtResource("5_d34qb")
-a = NodePath("../A")
 tintColor = Color(0.741818, 0.69478, 0.131017, 1)
 
 [node name="Box" type="MeshInstance3D" parent="Nodes/X"]
@@ -89,10 +124,10 @@ outline_modulate = Color(1, 1, 1, 1)
 font_size = 100
 outline_size = 8
 
-[node name="Z" type="Node3D" parent="Nodes" node_paths=PackedStringArray("c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
+[node name="Z" type="Node3D" parent="Nodes" node_paths=PackedStringArray("x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, -0.75, 0)
 script = ExtResource("6_u3fhg")
-c = NodePath("../C")
+x = NodePath("../X")
 tintColor = Color(0.862745, 0.478431, 0.4, 1)
 
 [node name="Box" type="MeshInstance3D" parent="Nodes/Z"]

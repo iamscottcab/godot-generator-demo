@@ -6,17 +6,13 @@ using System.Threading.Tasks;
 
 public partial class NodeListener : Node
 {
-	private List<Node> _nodes = new();
+	private readonly List<Node> _nodes = new();
 
-	public override async void _Ready()
-	{
-		await Task.Delay(1000);
-		await InitializeAll();
-	}
+	public override async void _Ready() => await InitializeAll();
 
 	public void OnNodeAdded(Node node)
 	{
-		GD.Print($"node added {node.Name}.");
+		Log.Append($"Node added {node.Name}.");
 		_nodes.Add(node);
 	}
 
@@ -24,12 +20,11 @@ public partial class NodeListener : Node
 	{
 		var initializables = _nodes.Where(x => x is IInitializable).Select(x => ((IInitializable)x).Initialize());
 
-		if (initializables.Count() == 0)
+		if (initializables.Any())
 		{
-			return;
+			Log.Append($"{System.Environment.NewLine}Initializing all the nodes.{System.Environment.NewLine}");
 		}
 
-		GD.Print($"Initializing all the nodes.");
 		await Task.WhenAll(initializables);
 	}
 }

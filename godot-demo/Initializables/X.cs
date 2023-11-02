@@ -1,19 +1,13 @@
 using System.Threading.Tasks;
-using Godot;
 using Scott.Cab.Initialization;
 
-[Initializable]
+// [Initializable]
 public partial class X : DemoNode
 {
-	[Export] private A a;
-
-	protected override int InitialWaitTimeInMilliSecs => 0;
-
     // protected virtual partial async Task OnInitialize()
 	// {		
+	// 	SetInitializing();
 	// 	await Task.Delay(WaitTime);
-		
-	// 	GD.Print($"{Name} Initialized");
-	// 	TintMesh();
+	// 	SetInitialized();
 	// }
 }
